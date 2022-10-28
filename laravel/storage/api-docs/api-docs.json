@@ -1,0 +1,254 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Documentation",
+        "description": "Documentation for API - Notebook",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "NOTEBOOK API"
+        }
+    ],
+    "paths": {
+        "/v1/notebook": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Display all contacts",
+                "operationId": "getAllContacts",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number. NOT REQURED, CHECK API ANSWER BEFORE",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Contacts list not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Create a new contact",
+                "operationId": "createContact",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "User name",
+                                        "type": "string",
+                                        "example": "Vladislav"
+                                    },
+                                    "surname": {
+                                        "description": "User surname",
+                                        "type": "string",
+                                        "example": "Ostryakov"
+                                    },
+                                    "middle_name": {
+                                        "description": "User middle name",
+                                        "type": "string",
+                                        "example": "Pavlovich"
+                                    },
+                                    "company": {
+                                        "description": "Company name",
+                                        "type": "string",
+                                        "example": "Coca-cola"
+                                    },
+                                    "phone": {
+                                        "description": "Phone number",
+                                        "type": "string",
+                                        "example": "79128539823"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ostryakov2011@yandex.ru"
+                                    },
+                                    "birthday": {
+                                        "description": "User birthday",
+                                        "type": "string",
+                                        "example": "2022-10-27"
+                                    },
+                                    "photo_path": {
+                                        "description": "",
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            }
+        },
+        "/v1/notebook/{id}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Display contact by id",
+                "operationId": "getContactById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id you need",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Contacts list not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Update contact by id",
+                "operationId": "updateContact",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id you need to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "User name",
+                                        "type": "string",
+                                        "example": "Vladislav"
+                                    },
+                                    "surname": {
+                                        "description": "User surname",
+                                        "type": "string",
+                                        "example": "Ostryakov"
+                                    },
+                                    "middle_name": {
+                                        "description": "User middle name",
+                                        "type": "string",
+                                        "example": "Pavlovich"
+                                    },
+                                    "company": {
+                                        "description": "Company name",
+                                        "type": "string",
+                                        "example": "Coca-cola"
+                                    },
+                                    "phone": {
+                                        "description": "Phone number",
+                                        "type": "string",
+                                        "example": "79128539823"
+                                    },
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "example": "ostryakov2011@yandex.ru"
+                                    },
+                                    "birthday": {
+                                        "description": "User birthday",
+                                        "type": "string",
+                                        "example": "2022-10-27"
+                                    },
+                                    "photo_path": {
+                                        "description": "",
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Contacts list not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Delete contact by id",
+                "operationId": "deleteContact",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id you need to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "404": {
+                        "description": "Contacts list not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Contacts": {
+                "title": "Contacts",
+                "description": "Contacts model"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Contacts",
+            "description": "Contact list"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+
+  mariadb:
+    image: mariadb:10
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      - MYSQL_DATABASE=database
+      - MYSQL_ROOT_PASSWORD=root_pass
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+    volumes:
+      - ./databases/mariadb:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:8080:80
+    links:
+      - mariadb
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_USER=root
+      - PMA_PASSWORD=root_pass
+
+  laravel:
+    image: evilfreelancer/dockavel:latest
+    restart: unless-stopped
+    user: 1000:1000
+    links:
+      - mariadb
+    ports:
+      - 80:8080
+    volumes:
+      - ./httpd.conf:/etc/apache2/httpd.conf
+      - ./laravel:/app:rw
